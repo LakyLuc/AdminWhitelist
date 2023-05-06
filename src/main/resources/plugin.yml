@@ -1,0 +1,10 @@
+name: AdminWhitelist
+version: '${project.version}'
+main: de.lcpcraft.lucas.adminwhitelist.AdminWhitelist
+api-version: 1.19
+authors: [ LakyLuc ]
+description: AdminWhitelist is a plugin that allows players who are not whitelisted to join the server, but only if an admin is online.
+commands:
+  adminwhitelist:
+    description: Used to manage the server administrators
+    aliases: [ awl ]
