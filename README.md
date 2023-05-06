@@ -1,6 +1,6 @@
 # AdminWhitelist - Allows players who are not on the whitelist to join the server when an admin is online
 
-![Version](https://img.shields.io/github/v/tag/LakyLuc/AdminWhitelist?style=flat-square)
+![Version](https://img.shields.io/github/v/release/LakyLuc/AdminWhitelist?style=flat-square)
 ![License](https://img.shields.io/badge/license-ARR-yellow?style=flat-square)
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/iSCYGGiW?style=flat-square)](https://modrinth.com/plugin/adminwhitelist)
 
