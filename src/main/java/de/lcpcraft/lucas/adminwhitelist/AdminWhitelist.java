@@ -50,18 +50,21 @@ public final class AdminWhitelist extends JavaPlugin {
         getCommand("adminwhitelist").setExecutor(new AdminWhitelistCommand());
         Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
 
-        if (!adminOnline())
+        if (Bukkit.getServer().hasWhitelist() && !adminOnline()) {
             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                 if (!onlinePlayer.isWhitelisted() && !isAdmin(onlinePlayer.getUniqueId()))
                     onlinePlayer.kick(kickMessage(), PlayerKickEvent.Cause.WHITELIST);
             }
+        }
     }
 
     @Override
     public void onDisable() {
-        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-            if (!onlinePlayer.isWhitelisted() && !isAdmin(onlinePlayer.getUniqueId()))
-                onlinePlayer.kick(kickMessage(), PlayerKickEvent.Cause.WHITELIST);
+        if (Bukkit.getServer().hasWhitelist()) {
+            for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                if (!onlinePlayer.isWhitelisted() && !isAdmin(onlinePlayer.getUniqueId()))
+                    onlinePlayer.kick(kickMessage(), PlayerKickEvent.Cause.WHITELIST);
+            }
         }
     }
 

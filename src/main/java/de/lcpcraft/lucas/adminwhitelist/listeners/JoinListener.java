@@ -18,7 +18,7 @@ public class JoinListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
-        if (!AdminWhitelist.adminOnline(e.getPlayer().getUniqueId())) {
+        if (Bukkit.getServer().hasWhitelist() && !AdminWhitelist.adminOnline(e.getPlayer().getUniqueId())) {
             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                 if (!onlinePlayer.isWhitelisted() && !AdminWhitelist.isAdmin(onlinePlayer.getUniqueId()))
                     onlinePlayer.kick(AdminWhitelist.kickMessage(), PlayerKickEvent.Cause.WHITELIST);
