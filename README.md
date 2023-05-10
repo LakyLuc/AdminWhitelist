@@ -5,11 +5,14 @@
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/iSCYGGiW?style=flat-square)](https://modrinth.com/plugin/adminwhitelist)
 
 ## Description
-AdminWhitelist is a plugin that allows players who are not whitelisted to join the server, but only if an admin is online.
+
+AdminWhitelist is a plugin that allows players who are not whitelisted to join the server, but only if an admin is
+online.
 Players that are not whitelisted will be kicked if no admins are online.
 This is useful for servers that want to be open to the public, but don't want to be overrun by griefers.
 
 ## Installation
+
 - Put the plugin in the `plugins` folder of your server
 - Start the server
 - Add players to the admin list with `/adminwhitelist add <UUID>`
@@ -18,6 +21,7 @@ This is useful for servers that want to be open to the public, but don't want to
 - Reload the whitelist with `/whitelist reload` after making changes
 
 ## Commands
+
 `/adminwhitelist add <UUID>` (`/awl add <UUID>`) - Adds a player to the admin list
 
 `/adminwhitelist remove <UUID>` (`/awl remove <UUID>`) - Removes a player from the admin list
@@ -25,5 +29,9 @@ This is useful for servers that want to be open to the public, but don't want to
 `/adminwhitelist list` (`/awl list`) - Lists all players on the admin list
 
 The commands must be run in the server console.
+
+## Permissions
+
+`adminwhitelist.update` - Receive a notification when a new version is available
 
 [![Modrinth](modrinth.png)](https://modrinth.com/plugin/adminwhitelist)

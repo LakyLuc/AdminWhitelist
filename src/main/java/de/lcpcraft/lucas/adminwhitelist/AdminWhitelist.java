@@ -3,6 +3,7 @@ package de.lcpcraft.lucas.adminwhitelist;
 import de.lcpcraft.lucas.adminwhitelist.commands.AdminWhitelistCommand;
 import de.lcpcraft.lucas.adminwhitelist.listeners.JoinListener;
 import de.lcpcraft.lucas.adminwhitelist.utils.Metrics;
+import de.lcpcraft.lucas.adminwhitelist.utils.Updater;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -19,6 +20,7 @@ import java.util.UUID;
 
 public final class AdminWhitelist extends JavaPlugin {
 
+    public static final String MODRINTH_ID = "iSCYGGiW";
     public static AdminWhitelist plugin;
     private static YamlConfiguration config;
     private static File configFile;
@@ -32,6 +34,7 @@ public final class AdminWhitelist extends JavaPlugin {
         configFile = new File(pluginFolder, "config.yml");
         config = YamlConfiguration.loadConfiguration(configFile);
         if (!config.isSet("whitelist_admins")) {
+            config.addDefault("update_channel", "release");
             config.addDefault("whitelist_admins", new ArrayList<>());
             config.addDefault("prefix", "§1[§9AdminWhitelist§1] §r");
             config.addDefault("kick_message", "§cDu bist nicht auf der Whitelist!");
@@ -46,6 +49,7 @@ public final class AdminWhitelist extends JavaPlugin {
             } catch (IOException ignored) {
             }
         }
+        Updater.checkForUpdates();
 
         getCommand("adminwhitelist").setExecutor(new AdminWhitelistCommand());
         Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
@@ -106,6 +110,13 @@ public final class AdminWhitelist extends JavaPlugin {
                 return true;
         }
         return false;
+    }
+
+    public static String updateChannel() {
+        String channel = config.getString("update_channel", "release");
+        if (channel.equals("release") || channel.equals("beta") || channel.equals("alpha"))
+            return channel;
+        return "release";
     }
 
     public static String prefix() {
