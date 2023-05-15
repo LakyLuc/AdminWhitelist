@@ -21,6 +21,7 @@ import java.util.UUID;
 public final class AdminWhitelist extends JavaPlugin {
 
     public static final String MODRINTH_ID = "iSCYGGiW";
+    public static final String MODRINTH_LINK = "https://modrinth.com/plugin/adminwhitelist/version/%version%";
     public static AdminWhitelist plugin;
     private static YamlConfiguration config;
     private static File configFile;
