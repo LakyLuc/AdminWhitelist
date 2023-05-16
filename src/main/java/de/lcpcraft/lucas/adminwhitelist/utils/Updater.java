@@ -8,6 +8,7 @@ import net.kyori.adventure.text.event.HoverEvent;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.checkerframework.checker.units.qual.A;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
@@ -42,9 +43,9 @@ public class Updater {
         if (latestVersion != null) {
             Component link = Component.text("Modrinth").clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL,
                             AdminWhitelist.MODRINTH_LINK.replace("%version%", latestVersion.version_number)))
-                    .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Component.text("§7Änderungsliste:\n" + latestVersion.changelog)));
-            Component message = Component.text(AdminWhitelist.prefix() + "§eEine neue Version von AdminWhitelist ist verfügbar ("
-                    + latestVersion.version_number + "). Download auf ").append(link).append(Component.text("§e verfügbar."));
+                    .hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Component.text("§7Changelog:\n" + latestVersion.changelog)));
+            Component message = Component.text(AdminWhitelist.prefix() + "§aA new version of AdminWhitelist is available §7("
+                    + latestVersion.version_number + ") §aDownload it at ").append(link);
             player.sendMessage(message);
         }
     }
