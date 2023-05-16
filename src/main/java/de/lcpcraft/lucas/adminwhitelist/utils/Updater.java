@@ -5,6 +5,7 @@ import de.lcpcraft.lucas.adminwhitelist.utils.modrinth.ProjectVersion;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -23,13 +24,15 @@ public class Updater {
             return;
         }
         String pluginVersion = Bukkit.getPluginManager().getPlugin("AdminWhitelist").getPluginMeta().getVersion();
-        if (!latestVersion.version_number.equals(pluginVersion)) {
+        DefaultArtifactVersion latest = new DefaultArtifactVersion(latestVersion.version_number);
+        DefaultArtifactVersion current = new DefaultArtifactVersion(pluginVersion);
+        if (latest.compareTo(current) > 0) {
             Updater.latestVersion = latestVersion;
             Bukkit.getConsoleSender().sendMessage(AdminWhitelist.prefix() + "§aA new version of AdminWhitelist is available: §e" + latestVersion.version_number);
             Bukkit.getConsoleSender().sendMessage(AdminWhitelist.prefix() + "§aDownload it at §e"
                     + AdminWhitelist.MODRINTH_LINK.replace("%version%", latestVersion.version_number));
             for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                if (onlinePlayer.hasPermission("simplenick.update"))
+                if (onlinePlayer.hasPermission("adminwhitelist.update"))
                     sendUpdateMessage(onlinePlayer);
             }
         }
